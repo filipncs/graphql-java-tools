@@ -2,6 +2,7 @@ package com.coxautodev.graphql.tools
 
 import com.google.common.primitives.Primitives
 import ru.vyarus.java.generics.resolver.GenericsResolver
+import rx.Observable
 import sun.reflect.generics.reflectiveObjects.WildcardTypeImpl
 import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType
@@ -40,6 +41,7 @@ abstract class GenericType(val baseType: Class<*>) {
                     Future::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
                     CompletionStage::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
                     CompletableFuture::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
+                    Observable::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
                     else -> type
                 }
             }
